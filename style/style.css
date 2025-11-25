@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Gujarati:wght@680&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#navbar {
+  width: 100%;
+  padding: 25px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+   transition: all 0.3s ease;  
+   z-index: 1000;
+  backdrop-filter: none;     
+  background: transparent;
+}
+#navbar.scrolled {
+  background: transparent;  
+  backdrop-filter: blur(13px);
+}
+
+/* Logo */
+.logo {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.logo img {
+  height: 3vw;
+}
+
+/* Nav links container */
+.nav-links {
+  display: flex;
+  gap: 70px;
+}
+
+.nav-links a {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  transition: 0.3s;
+  color: #ffffff;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+}
+
+/* Top-right 'Get Started' button */
+.nav-btn {
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  padding: 10px 20px;
+  background: black;
+  border-radius: 30px;
+  border: 1px solid black;
+  font-size: 15px;
+  transition: 0.3s ease;
+  color: white;
+
+}
+
+.nav-btn::after {
+  content: "";
+  position: absolute;
+  /* Position it bottom-center */
+  left: 50%;
+  bottom: -10px;
+  /* How far BELOW the button the glow appears */
+  transform: translateX(-50%);
+  width: 70%;
+  /* Width of glow (you can adjust) */
+  height: 25px;
+  /* Height of glow */
+  /* The actual glow gradient */
+  background: radial-gradient(ellipse at center, rgb(31, 67, 211) 0%,
+      /* Bright blue center */
+      rgba(91, 124, 255, 0) 80%
+      /* Fade out to transparent */
+    );
+  filter: blur(2px);
+  /* Controls softness of the glow */
+  border-radius: 50%;
+  /* Makes it circular/ellipse */
+  z-index: -1;
+  /* Keep glow *behind* button */
+  pointer-events: none;
+}
+
+.nav-btn:hover {
+  background: rgb(15, 15, 41);
+}
+
+/* ----------------------- HERO SECTION--------------------------------*/
+.hero {
+  background: radial-gradient(circle 600px at top, rgb(55, 78, 168), rgb(18, 18, 24));
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* Main heading */
+.hero h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 4.4rem;
+  font-weight: 600;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  background: #ffffff;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(145, 172, 194, 1) 48%, rgba(255, 255, 255, 1)50%, rgba(99, 129, 153, 1) 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Sub heading */
+.hero p {
+  font-family: "Montserrat", sans-serif;
+  color: rgba(191, 199, 207, 1);
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: 45px;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+}
+
+/* Buttons group */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: rgba(91, 124, 255, 1);
+  color: rgba(255, 255, 255, 1);
+  font-family: "Montserrat", sans-serif;
+  padding: 15px 35px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 550;
+  line-height: 100%;
+  margin-right: 60px;
+}
+
+.btn-secondary {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  color: rgba(191, 199, 207, 1);
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  margin-right: 25px;
+
+}
+
+.hero-buttons i {
+  color: white;
+  display: flex;
+  align-items: center;
+}
