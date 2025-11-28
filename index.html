@@ -19,6 +19,11 @@
   <nav id="navbar">
     <div class="logo"><img src="/assests/sidhi_logo.png"></div>
 
+    <!-- Hamburger Icon for mobile -->
+    <div id="menuIcon" class="menu-icon" aria-label="menu" role="button" tabindex="0">
+      <img src="assests/menu_icon.png">
+    </div>
+
     <div class="nav-links">
       <a href="#">Home</a>
       <a href="#">Our Work</a>
@@ -28,6 +33,15 @@
 
     <a href="#" class="nav-btn">Get Started</a>
   </nav>
+  <!-- Mobile Dropdown Menu -->
+  <div id="mobileMenu" aria-hidden="true">
+    <a href="#">Home</a>
+    <a href="#">Our Work</a>
+    <a href="#">About Us</a>
+    <a href="#">Blog</a>
+    <a href="#" class="mob-btn">Get Started</a>
+  </div>
+
 
   <!-- ========================== HERO SECTION============================= -->
   <section class="hero">
@@ -56,16 +70,16 @@
       <div class="skills-track">
         <span><img src="assests/slider_icon_figma.png"> Figma</span>
         <span><img src="assests/slider_icon_android.png"> Android</span>
-        <span><img src="assests/slider_icon_android.png"> Unity</span>
+        <span><img src="assests/slider_icon_unity.png"> Unity</span>
         <span><img src="assests/slider_icon_android.png"> React Native</span>
         <span><img src="assests/slider_icon_js.png"> Java Script</span>
         <span><i class="bi bi-stars"></i> Artificial Intelligence</span>
         <span> <i class="bi bi-filetype-php"></i>Php</span>
 
         <!-- DUPLICATE for seamless infinite loop-->
-     <span><img src="assests/slider_icon_figma.png"> Figma</span>
+        <span><img src="assests/slider_icon_figma.png"> Figma</span>
         <span><img src="/assests/slider_icon_android.png"> Android</span>
-        <span><img src="assests/slider_icon_android.png"> Unity</span>
+        <span><img src="assests/slider_icon_unity.png"> Unity</span>
         <span><img src="assests/slider_icon_android.png"> React Native</span>
         <span><img src="assests/slider_icon_js.png"> Java Script</span>
         <span><i class="bi bi-stars"></i> Artificial Intelligence</span>
@@ -182,6 +196,23 @@
 
     </div>
   </section>
+  <section class="get-quote-form">
+    <h3>Get Quote Now</h3>
+
+    <p>
+      If you are having an plan to make an application just share you details and we will get connect with you.
+    </p>
+
+    <form>
+      <input type="text" placeholder="Name" required>
+      <input type="email" placeholder="Email" required>
+      <input type="tel" placeholder="Contact Number" required>
+      <textarea placeholder="Message" rows="5" required></textarea>
+
+      <button type="submit" class="form-btn">Get Connected</button>
+    </form>
+  </section>
+
 
   <footer class="footer">
     <div class="footer-line"></div>
@@ -198,16 +229,26 @@
       </div>
 
       <div class="footer-right">
-        <h3>Get In Touch</h3>
-        <p>hr@siddhisoftwarescompany.com</p>
-        <p>+91 9521005427</p>
-        <p>Rajasthan, India</p>
+        <div class="footer-info">
+          <h3>Get In Touch</h3>
+          <p>hr@siddhisoftwarescompany.com</p>
+          <p>+91 9521005427</p>
+          <p>Rajasthan, India</p>
+        </div>
 
         <div class="footer-links">
           <a href="#">Privacy</a>
           <a href="#">Policy</a>
         </div>
+        <!-- Navigation → Mobile Only -->
+        <div class="footer-section mobile-nav">
+          <h3>Navigation</h3>
+          <p>Our Work</p>
+          <p>About Us</p>
+          <p>Blog</p>
+        </div>
       </div>
+
     </div>
   </footer>
 
@@ -259,6 +300,81 @@
         nav.classList.remove("scrolled");
       }
     });
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const icon = document.getElementById('menuIcon');
+      const menu = document.getElementById('mobileMenu');
+
+      if (!icon || !menu) {
+        console.warn('menuIcon or mobileMenu not found by ID');
+        return;
+      }
+
+      // Toggle function (reliable)
+      function toggleMenu() {
+        const willOpen = !menu.classList.contains('open');
+        if (willOpen) {
+          icon.classList.add('active');
+          menu.classList.add('open');
+          menu.setAttribute('aria-hidden', 'false');
+          console.log('menu opened');
+        } else {
+          icon.classList.remove('active');
+          menu.classList.remove('open');
+          menu.setAttribute('aria-hidden', 'true');
+          console.log('menu closed');
+        }
+      }
+
+      // click / keyboard handlers
+      icon.addEventListener('click', toggleMenu);
+      icon.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleMenu();
+        }
+      });
+
+      // close when clicking any mobile link
+      const mobileLinks = menu.querySelectorAll('a');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          // small delay so you can see click action before closing
+          setTimeout(() => {
+            icon.classList.remove('active');
+            menu.classList.remove('open');
+            menu.setAttribute('aria-hidden', 'true');
+            console.log('menu closed via link click');
+          }, 80);
+        });
+      });
+
+      // close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menu.classList.contains('open')) {
+          icon.classList.remove('active');
+          menu.classList.remove('open');
+          menu.setAttribute('aria-hidden', 'true');
+          console.log('menu closed via Escape');
+        }
+      });
+
+      // OPTIONAL: clicking outside menu closes it (desktop/mobile)
+      document.addEventListener('click', (evt) => {
+        const target = evt.target;
+        if (menu.classList.contains('open')) {
+          const clickedInsideMenu = menu.contains(target) || icon.contains(target);
+          if (!clickedInsideMenu) {
+            icon.classList.remove('active');
+            menu.classList.remove('open');
+            menu.setAttribute('aria-hidden', 'true');
+            console.log('menu closed via outside click');
+          }
+        }
+      });
+    });
+
   </script>
 </body>
 
